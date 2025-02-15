@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo Tin Tuyển Dụng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tạo Tin Tuyển Dụng</h1>
+        <form id="jobForm">
+            <label for="basicJD">Nhập thông tin cơ bản về công việc:</label><br>
+            <textarea id="basicJD" name="basicJD" placeholder="Ví dụ: Cần tuyển nhân viên kinh doanh, có kinh nghiệm 2 năm, lương thỏa thuận..."></textarea><br>
+            <button type="button" onclick="generateJD()">AI Soạn JD</button>
+        </form>
+        <div class="result">
+            <h2>Kết quả:</h2>
+            <p id="generatedJD"></p>
+        </div>
+    </div>
+
+    <script>
+        async function generateJD() {
+            const basicJD = document.getElementById('basicJD').value;
+            const apiKey = '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';
+            const url = 'https://api.openai.com/v1/chat/completions';
+
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify({
+                    model: "gpt-3.5-turbo",
+                    messages: [
+                        {"role": "system", "content": "Bạn là một trợ lý tuyển dụng chuyên nghiệp."},
+                        {"role": "user", "content": `Hãy soạn thảo một bản mô tả công việc dựa trên thông tin sau: ${basicJD}`}
+                    ]
+                })
+            });
+
+            const data = await response.json();
+            document.getElementById('generatedJD').innerText = data.choices[0].message.content;
+        }
+    </script>
+</body>
+</html>
