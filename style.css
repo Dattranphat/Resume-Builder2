@@ -1,0 +1,191 @@
+/* Base Styles - Consider a slightly more professional font if desired */
+body {
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; /* Example: Segoe UI */
+    background-color: #e8f0f2; /* Slightly muted background */
+    text-align: center;
+    padding: 15px;
+    color: #263238; /* Dark Blue Grey */
+    line-height: 1.6;
+    margin: 0; /* Remove default body margin */
+}
+.game-container {
+    max-width: 900px; /* Wider for potentially longer text */
+    margin: 20px auto;
+}
+h1 {
+    color: #004d40; /* Dark Teal */
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 600; /* Slightly bolder */
+}
+
+/* Animal Selection Gallery */
+#animalGallery {
+    margin-bottom: 35px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 51, 77, 0.08);
+}
+.gallery-group-header {
+    text-align: left;
+    margin: 25px 0 15px 10px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #00695c; /* Medium Teal */
+    border-bottom: 2px solid #b2dfdb;
+    padding-bottom: 6px;
+}
+.gallery-group-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Slightly larger items */
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 25px;
+}
+.animal-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 8px;
+    border: 1px solid #cfd8dc; /* Light border */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    position: relative;
+    background-color: #fff; /* Ensure bg for shadow */
+}
+.animal-selector:hover:not(.completed) {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 77, 64, 0.1); /* Teal shadow */
+    border-color: #4db6ac;
+}
+.animal-selector .emoji {
+    font-size: clamp(2.8rem, 7vw, 3.8rem);
+    line-height: 1;
+    margin-bottom: 8px;
+}
+.animal-selector .name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #004d40;
+}
+
+/* Completed State */
+.animal-selector.completed {
+    opacity: 0.6;
+    filter: grayscale(50%);
+    cursor: default;
+    background-color: #e0f2f1; /* Very Light Teal */
+    box-shadow: none;
+    border-color: #cfd8dc;
+    pointer-events: none;
+}
+.animal-selector.completed::after {
+    content: '✓'; /* Unicode check */
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #00796b; /* Teal check */
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    padding: 0 4px;
+    line-height: 1;
+}
+
+/* Active Game Area */
+#activeGameArea {
+    margin-top: 25px;
+    padding: 30px; /* More padding */
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 51, 77, 0.1);
+    display: none; /* Initially hidden */
+    border: 2px solid #004d40;
+    text-align: center;
+}
+ #activeGameArea.visible { display: block; }
+.animal-image-active {
+    font-size: clamp(5rem, 14vw, 7rem);
+    margin: 10px 0 15px 0;
+    min-height: 80px;
+    line-height: 1;
+}
+.word-display-active {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    margin: 10px 0 20px 0;
+    color: #004d40;
+    font-weight: 600;
+    min-height: 45px;
+    word-wrap: break-word;
+}
+ .options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px; /* Slightly more gap */
+    margin: 30px auto; /* Centered margin */
+    min-height: 120px;
+    max-width: 600px; /* Limit width of options */
+}
+.options button {
+    background: #00796b; /* Teal buttons */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 16px 20px; /* More padding */
+    font-size: 1.05rem; /* Slightly larger font */
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s, opacity 0.3s;
+    text-align: left;
+    line-height: 1.5; /* Adjust line height */
+    font-weight: 400; /* Normal weight for base text */
+}
+.options button strong {
+    font-weight: 700; /* Bolder */
+    color: #e0f2f1; /* Light teal highlight */
+     background-color: rgba(0, 77, 64, 0.2); /* Subtle background for bold */
+     padding: 0 3px;
+     border-radius: 3px;
+}
+.options button:hover:not(:disabled) { background: #00695c; }
+.options button:active:not(:disabled) { transform: scale(0.99); }
+.options button.correct {
+    background: #43a047; /* Slightly darker Green */
+    font-weight: 500; /* Medium weight for correct button */
+    color: white;
+}
+.options button.correct strong { font-weight: 700; color: #e8f5e9; background-color: rgba(27, 94, 32, 0.3); }
+.options button:disabled { cursor: not-allowed; }
+.options button.faded { opacity: 0.65; background-color: #78909c; } /* Blue Grey faded */
+
+.feedback { font-size: 1.15rem; margin: 20px auto; min-height: 30px; font-weight: 500; transition: color 0.3s; max-width: 600px; line-height: 1.6; }
+.feedback.correct-feedback { color: #2e7d32; } /* Dark Green */
+.feedback.info-feedback { color: #1976d2; } /* Blue */
+.feedback.wrong-feedback { color: #c62828; } /* Dark Red */
+
+/* Reset Button */
+#resetButtonContainer { margin-top: 40px; }
+#resetButton {
+     padding: 12px 30px; font-size: 1.05rem; background-color: #d84315; /* Deep Orange */ color: white; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.2s; font-weight: 500;
+}
+ #resetButton:hover { background-color: #bf360c; }
+
+/* Responsive */
+ @media (max-width: 768px) {
+     .gallery-group-content { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
+     .gallery-group-header { font-size: 1.2rem; }
+     .options button { padding: 14px 18px; font-size: 1rem; }
+ }
+ @media (max-width: 480px) {
+     .gallery-group-content { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 15px;}
+     .gallery-group-header { font-size: 1.1rem; margin-left: 0; }
+     .animal-selector .emoji { font-size: 2.8rem; }
+     #activeGameArea { padding: 20px 15px; }
+     .animal-image-active { font-size: 4.5rem; }
+     .word-display-active { font-size: 1.8rem; }
+     .options button { padding: 12px 15px; font-size: 0.95rem;}
+     .feedback { font-size: 1.05rem;}
+ }
