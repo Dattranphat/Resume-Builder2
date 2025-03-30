@@ -1,191 +1,286 @@
-/* Base Styles - Consider a slightly more professional font if desired */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Added for better layout control */
+    font-weight: 400; /* Adjusted default weight */
+    font-size: 14px;
+}
+
 body {
-    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; /* Example: Segoe UI */
-    background-color: #e8f0f2; /* Slightly muted background */
-    text-align: center;
-    padding: 15px;
-    color: #263238; /* Dark Blue Grey */
-    line-height: 1.6;
-    margin: 0; /* Remove default body margin */
-}
-.game-container {
-    max-width: 900px; /* Wider for potentially longer text */
-    margin: 20px auto;
-}
-h1 {
-    color: #004d40; /* Dark Teal */
-    margin-top: 0;
-    margin-bottom: 30px;
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
-    font-weight: 600; /* Slightly bolder */
+    background: linear-gradient(135deg, #E3E3E3 0%, #9a9a9a 100%);
+    display: grid;
+    place-items: center;
+    padding-top: 20px; /* Added padding instead of margin on resume */
+    padding-bottom: 50px; /* Ensure space below resume */
+    opacity: 1;
+    font-family: 'Raleway', sans-serif; /* Default font */
 }
 
-/* Animal Selection Gallery */
-#animalGallery {
-    margin-bottom: 35px;
-    padding: 15px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 51, 77, 0.08);
+/* Class to hide elements (e.g., during PDF generation) */
+.none {
+    display: none !important; /* Use !important to override other styles */
 }
-.gallery-group-header {
-    text-align: left;
-    margin: 25px 0 15px 10px;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #00695c; /* Medium Teal */
-    border-bottom: 2px solid #b2dfdb;
-    padding-bottom: 6px;
+
+.resume {
+    /* margin-top: 20px; Removed, handled by body padding */
+    width: 800px;
+    max-width: 95%; /* Make it slightly responsive */
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    background-color: #fff; /* Moved background here */
 }
-.gallery-group-content {
+
+#print {
+    padding: 30px 50px;
+    min-height: 1120px; /* Maintain A4-like aspect ratio */
+}
+
+/* --- Header --- */
+.head {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Slightly larger items */
-    gap: 20px;
-    width: 100%;
-    margin-bottom: 25px;
+    grid-template-columns: 3fr 1.5fr;
+    gap: 20px; /* Added gap */
+    align-items: start; /* Align items to the top */
 }
-.animal-selector {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 12px 8px;
-    border: 1px solid #cfd8dc; /* Light border */
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    position: relative;
-    background-color: #fff; /* Ensure bg for shadow */
+
+.head .main .name {
+    font-size: 48px; /* Slightly reduced */
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700; /* Bolder name */
+    line-height: 1.1;
 }
-.animal-selector:hover:not(.completed) {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0, 77, 64, 0.1); /* Teal shadow */
-    border-color: #4db6ac;
+
+.head .main span:nth-child(2) {
+    color: rgb(80, 80, 80); /* Darker grey */
+    font-size: 48px;
+    font-family: 'Raleway', sans-serif;
+    margin-left: 5px;
+     font-weight: 400; /* Lighter last name */
 }
-.animal-selector .emoji {
-    font-size: clamp(2.8rem, 7vw, 3.8rem);
-    line-height: 1;
-    margin-bottom: 8px;
+
+.head .main .post {
+    font-family: 'Barlow', sans-serif;
+    font-size: 18px; /* Larger post title */
+    color: #333;
+    margin-top: 5px;
 }
-.animal-selector .name {
-    font-size: 0.85rem;
+
+.head .contacts {
+    text-align: right;
+    padding-top: 7px;
+    line-height: 1.6; /* Improved line spacing */
+}
+
+.head .contacts .content {
     font-weight: 500;
-    color: #004d40;
+    padding-right: 5px;
+    word-break: break-word; /* Prevent long emails/links from overflowing */
 }
 
-/* Completed State */
-.animal-selector.completed {
-    opacity: 0.6;
-    filter: grayscale(50%);
-    cursor: default;
-    background-color: #e0f2f1; /* Very Light Teal */
-    box-shadow: none;
-    border-color: #cfd8dc;
-    pointer-events: none;
-}
-.animal-selector.completed::after {
-    content: '✓'; /* Unicode check */
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #00796b; /* Teal check */
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    padding: 0 4px;
-    line-height: 1;
-}
-
-/* Active Game Area */
-#activeGameArea {
-    margin-top: 25px;
-    padding: 30px; /* More padding */
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 51, 77, 0.1);
-    display: none; /* Initially hidden */
-    border: 2px solid #004d40;
+.head .contacts .symbol {
+    margin-left: 5px; /* Swapped margin side */
+    font-size: 14px; /* Adjusted size */
+    width: 17px;
+    height: 17px;
+    color: #333; /* Icon color */
+    display: inline-block; /* Ensure proper alignment */
     text-align: center;
 }
- #activeGameArea.visible { display: block; }
-.animal-image-active {
-    font-size: clamp(5rem, 14vw, 7rem);
-    margin: 10px 0 15px 0;
-    min-height: 80px;
-    line-height: 1;
+
+/* --- Separator Line --- */
+.line {
+    height: 1px; /* Thinner line */
+    background-color: rgb(150, 150, 150); /* Lighter grey */
+    margin: 25px 0;
+    margin-bottom: 35px; /* More space after line */
 }
-.word-display-active {
-    font-size: clamp(2rem, 5vw, 2.8rem);
-    margin: 10px 0 20px 0;
-    color: #004d40;
-    font-weight: 600;
-    min-height: 45px;
-    word-wrap: break-word;
-}
- .options {
+
+/* --- Main Body Layout --- */
+.mainbody {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px; /* Slightly more gap */
-    margin: 30px auto; /* Centered margin */
-    min-height: 120px;
-    max-width: 600px; /* Limit width of options */
+    grid-template-columns: 10fr 1fr 17fr;
+    /* height: 900px; Removed fixed height */
+    min-height: 800px; /* Use min-height instead */
+    gap: 15px; /* Add gap between columns */
 }
-.options button {
-    background: #00796b; /* Teal buttons */
-    color: white;
+
+.mainbody .border {
+    background-color: rgb(180, 180, 180); /* Lighter border */
+    width: 2px; /* Thinner border */
+    opacity: 1; /* Opacity not needed if color is set */
+    margin: 0 10px; /* Add some horizontal margin */
+}
+
+.mainbody .leftside,
+.mainbody .rightside {
+    padding-top: 5px;
+}
+.mainbody .rightside {
+     padding-left: 0; /* Removed padding, gap handles spacing */
+}
+.mainbody .leftside {
+    padding-right: 0; /* Removed padding */
+}
+
+
+/* --- Section Titles --- */
+.title {
+    font-weight: 700;
+    font-size: 16px; /* Slightly smaller title */
     border: none;
-    border-radius: 8px;
-    padding: 16px 20px; /* More padding */
-    font-size: 1.05rem; /* Slightly larger font */
+    padding-bottom: 3px;
+    border-bottom: 2px solid #5cb85c; /* Using Bootstrap success color */
+    display: inline-block; /* Ensure border only spans text */
+    margin-bottom: 10px; /* Space below title */
+    text-transform: uppercase; /* Uppercase titles */
+    letter-spacing: 0.5px;
+}
+
+/* --- Common Item Styling --- */
+.skill, .language, .achieve, .interest, .edublock, .new-section-block {
+    margin-bottom: 10px; /* Consistent spacing */
+    line-height: 1.5; /* Improve readability */
+    display: flex; /* Use flex for alignment */
+    align-items: flex-start; /* Align checkbox with first line */
+}
+
+.skill span:not(:first-child),
+.language span:not(:first-child),
+.achieve span:not(:first-child),
+.interest span:not(:first-child),
+.edublock div,
+.new-section-block div {
+    margin-left: 5px; /* Space after icon/checkbox */
+}
+
+.skill .fa-chevron-circle-right {
+    color: #5cb85c; /* Match title border color */
+    margin-right: 5px;
+}
+
+/* Specific Sections */
+.language span:nth-child(odd):not(:first-child) { /* Target LANGNAME specifically */
+    font-weight: 700;
+}
+
+.edublock {
+    display: block; /* Override flex for education block structure */
+    margin-bottom: 15px;
+}
+.edublock .education-head {
+    font-weight: 700;
+    font-size: 15px; /* Slightly smaller */
+    margin-left: 5px; /* Align with checkbox */
+}
+.edublock div {
+    margin-left: 25px; /* Indent institution/year */
+    font-size: 13px;
+    color: #555;
+}
+
+.new-section-block {
+    display: block; /* Override flex */
+    margin-bottom: 20px; /* More space between these sections */
+}
+.new-section-block .title {
+    margin-left: 5px; /* Align title with checkbox */
+}
+.new-section-block div {
+     margin-left: 25px; /* Indent description */
+     margin-top: 5px;
+}
+
+
+/* --- Buttons --- */
+button.btn { /* Style add/remove buttons */
+    margin-top: 10px;
+    margin-right: 5px;
+    font-size: 12px; /* Smaller buttons */
+    padding: 4px 8px;
+}
+/* Ensure remove buttons have consistent margin */
+.leftside > div > button.btn-danger,
+.rightside > div > button.btn-danger,
+.new-section-container > button.btn-danger {
+    margin-top: 10px;
+}
+
+
+/* --- Navigation Buttons --- */
+.nav {
+    position: fixed;
+    top: 50%; /* Center vertically */
+    left: 2%;
+    transform: translateY(-50%); /* Adjust vertical centering */
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 15px; /* Space between buttons */
+    z-index: 100; /* Ensure they are above resume */
+}
+
+.navbtn {
+    background-color: #fff;
+    color: #333;
+    height: 50px; /* Smaller buttons */
+    width: 50px;
+    border-radius: 50%;
+    border: #ccc 2px solid;
+    transition: all 300ms ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px, rgba(0, 0, 0, 0.05) 0px 1px 3px;
+    display: flex; /* Center icon */
+    justify-content: center;
+    align-items: center;
+    text-decoration: none; /* For <a> tag */
+    font-size: 18px; /* Icon size */
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s, opacity 0.3s;
-    text-align: left;
-    line-height: 1.5; /* Adjust line height */
-    font-weight: 400; /* Normal weight for base text */
 }
-.options button strong {
-    font-weight: 700; /* Bolder */
-    color: #e0f2f1; /* Light teal highlight */
-     background-color: rgba(0, 77, 64, 0.2); /* Subtle background for bold */
-     padding: 0 3px;
-     border-radius: 3px;
-}
-.options button:hover:not(:disabled) { background: #00695c; }
-.options button:active:not(:disabled) { transform: scale(0.99); }
-.options button.correct {
-    background: #43a047; /* Slightly darker Green */
-    font-weight: 500; /* Medium weight for correct button */
-    color: white;
-}
-.options button.correct strong { font-weight: 700; color: #e8f5e9; background-color: rgba(27, 94, 32, 0.3); }
-.options button:disabled { cursor: not-allowed; }
-.options button.faded { opacity: 0.65; background-color: #78909c; } /* Blue Grey faded */
 
-.feedback { font-size: 1.15rem; margin: 20px auto; min-height: 30px; font-weight: 500; transition: color 0.3s; max-width: 600px; line-height: 1.6; }
-.feedback.correct-feedback { color: #2e7d32; } /* Dark Green */
-.feedback.info-feedback { color: #1976d2; } /* Blue */
-.feedback.wrong-feedback { color: #c62828; } /* Dark Red */
-
-/* Reset Button */
-#resetButtonContainer { margin-top: 40px; }
-#resetButton {
-     padding: 12px 30px; font-size: 1.05rem; background-color: #d84315; /* Deep Orange */ color: white; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.2s; font-weight: 500;
+.navbtn:hover {
+    background-color: #333;
+    color: #fff;
+    border-color: #333;
+    transform: scale(1.1); /* Grow effect */
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 12px, rgba(0, 0, 0, 0.1) 0px 2px 6px;
 }
- #resetButton:hover { background-color: #bf360c; }
 
-/* Responsive */
- @media (max-width: 768px) {
-     .gallery-group-content { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
-     .gallery-group-header { font-size: 1.2rem; }
-     .options button { padding: 14px 18px; font-size: 1rem; }
- }
- @media (max-width: 480px) {
-     .gallery-group-content { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 15px;}
-     .gallery-group-header { font-size: 1.1rem; margin-left: 0; }
-     .animal-selector .emoji { font-size: 2.8rem; }
-     #activeGameArea { padding: 20px 15px; }
-     .animal-image-active { font-size: 4.5rem; }
-     .word-display-active { font-size: 1.8rem; }
-     .options button { padding: 12px 15px; font-size: 0.95rem;}
-     .feedback { font-size: 1.05rem;}
- }
+/* --- Checkbox --- */
+.input-checkbox {
+    margin-right: 8px;
+    cursor: pointer;
+    width: 15px; /* Slightly larger checkbox */
+    height: 15px;
+    vertical-align: middle; /* Align better with text */
+}
+
+/* --- Content Editable Placeholder --- */
+[contenteditable="true"]:empty:before {
+  content: attr(placeholder);
+  color: gray;
+  font-style: italic;
+}
+
+/* Print specific styles (optional but good practice) */
+@media print {
+  body {
+    background: none; /* No background for printing */
+    padding: 0;
+  }
+  .resume {
+    box-shadow: none; /* No shadow for printing */
+    width: 100%;
+    max-width: 100%;
+  }
+  .nav {
+    display: none; /* Hide nav buttons when printing */
+  }
+  #print {
+      padding: 10mm; /* Add margins for printing */
+      min-height: 0; /* Allow content to flow naturally */
+  }
+  /* Hide buttons and checkboxes directly via CSS for printing */
+  #print button, #print .input-checkbox {
+      display: none !important;
+  }
+}
