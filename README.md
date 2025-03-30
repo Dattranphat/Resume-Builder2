@@ -3,7 +3,7 @@
 A simple, browser-based resume builder that allows you to create, edit, and download your resume directly in your web browser. All progress is saved locally using your browser's `localStorage`, and the entire application is static, making it easy to host on platforms like GitHub Pages.
 
 **[➡️ View Live Demo](DEMO)** ✍️ <br>
-*(Replace `https://stevedat.github.io/soanJD/` with the actual URL after deploying)*
+*(Replace `https://stevedat.github.io/Resume-Builder/` with the actual URL after deploying)*
 
 ## Screenshot
 
