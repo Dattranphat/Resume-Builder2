@@ -2,8 +2,8 @@
 
 A simple, browser-based resume builder that allows you to create, edit, and download your resume directly in your web browser. All progress is saved locally using your browser's `localStorage`, and the entire application is static, making it easy to host on platforms like GitHub Pages.
 
-**[➡️ View Live Demo](YOUR_GITHUB_PAGES_URL_HERE)** ✍️ <br>
-*(Replace `YOUR_GITHUB_PAGES_URL_HERE` with the actual URL after deploying)*
+**[➡️ View Live Demo](DEMO)** ✍️ <br>
+*(Replace `https://stevedat.github.io/soanJD/` with the actual URL after deploying)*
 
 ## Screenshot
 
@@ -79,8 +79,7 @@ You can easily host this resume builder on GitHub Pages for free:
 
 ## Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/issues) (replace with your actual repo link).
-
+Contributions, issues, and feature requests are welcome!
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details (or choose/state your preferred license).
