@@ -1,286 +1,293 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* Added for better layout control */
-    font-weight: 400; /* Adjusted default weight */
-    font-size: 14px;
+/* Base Styles */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --text-color: #333;
+    --light-gray: #f8f9fa;
+    --medium-gray: #e9ecef;
+    --dark-gray: #6c757d;
+    --white: #ffffff;
+    --font-main: 'Lato', sans-serif;
+    --font-headings: 'Montserrat', sans-serif;
 }
 
 body {
-    background: linear-gradient(135deg, #E3E3E3 0%, #9a9a9a 100%);
-    display: grid;
-    place-items: center;
-    padding-top: 20px; /* Added padding instead of margin on resume */
-    padding-bottom: 50px; /* Ensure space below resume */
-    opacity: 1;
-    font-family: 'Raleway', sans-serif; /* Default font */
+    font-family: var(--font-main);
+    color: var(--text-color);
+    background-color: #f5f5f5;
+    line-height: 1.6;
 }
 
-/* Class to hide elements (e.g., during PDF generation) */
-.none {
-    display: none !important; /* Use !important to override other styles */
+/* Layout */
+.sidebar {
+    background-color: var(--primary-color);
+    color: var(--white);
+    min-height: 100vh;
+    padding: 0;
 }
 
-.resume {
-    /* margin-top: 20px; Removed, handled by body padding */
-    width: 800px;
-    max-width: 95%; /* Make it slightly responsive */
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
-    background-color: #fff; /* Moved background here */
+.resume-editor {
+    padding: 2rem;
+    background-color: var(--light-gray);
 }
 
-#print {
-    padding: 30px 50px;
-    min-height: 1120px; /* Maintain A4-like aspect ratio */
+.resume-container {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-/* --- Header --- */
-.head {
-    display: grid;
-    grid-template-columns: 3fr 1.5fr;
-    gap: 20px; /* Added gap */
-    align-items: start; /* Align items to the top */
+.resume-paper {
+    background-color: var(--white);
+    padding: 2rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.head .main .name {
-    font-size: 48px; /* Slightly reduced */
-    font-family: 'Raleway', sans-serif;
-    font-weight: 700; /* Bolder name */
-    line-height: 1.1;
+/* Typography */
+h1, h2, h3, h4 {
+    font-family: var(--font-headings);
+    font-weight: 600;
 }
 
-.head .main span:nth-child(2) {
-    color: rgb(80, 80, 80); /* Darker grey */
-    font-size: 48px;
-    font-family: 'Raleway', sans-serif;
-    margin-left: 5px;
-     font-weight: 400; /* Lighter last name */
+.resume-name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
 }
 
-.head .main .post {
-    font-family: 'Barlow', sans-serif;
-    font-size: 18px; /* Larger post title */
-    color: #333;
-    margin-top: 5px;
+.resume-title {
+    font-size: 1.25rem;
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
 }
 
-.head .contacts {
-    text-align: right;
-    padding-top: 7px;
-    line-height: 1.6; /* Improved line spacing */
+.section-title {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.5rem;
+    margin: 1.5rem 0 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.head .contacts .content {
-    font-weight: 500;
-    padding-right: 5px;
-    word-break: break-word; /* Prevent long emails/links from overflowing */
+/* Header Styles */
+.contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
-.head .contacts .symbol {
-    margin-left: 5px; /* Swapped margin side */
-    font-size: 14px; /* Adjusted size */
-    width: 17px;
-    height: 17px;
-    color: #333; /* Icon color */
-    display: inline-block; /* Ensure proper alignment */
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.contact-item i {
+    color: var(--secondary-color);
+    width: 1rem;
     text-align: center;
 }
 
-/* --- Separator Line --- */
-.line {
-    height: 1px; /* Thinner line */
-    background-color: rgb(150, 150, 150); /* Lighter grey */
-    margin: 25px 0;
-    margin-bottom: 35px; /* More space after line */
+/* Section Styles */
+.section-content {
+    margin-bottom: 1rem;
+    line-height: 1.6;
 }
 
-/* --- Main Body Layout --- */
-.mainbody {
-    display: grid;
-    grid-template-columns: 10fr 1fr 17fr;
-    /* height: 900px; Removed fixed height */
-    min-height: 800px; /* Use min-height instead */
-    gap: 15px; /* Add gap between columns */
+/* Experience Styles */
+.experience-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--medium-gray);
 }
 
-.mainbody .border {
-    background-color: rgb(180, 180, 180); /* Lighter border */
-    width: 2px; /* Thinner border */
-    opacity: 1; /* Opacity not needed if color is set */
-    margin: 0 10px; /* Add some horizontal margin */
+.experience-header {
+    margin-bottom: 0.5rem;
 }
 
-.mainbody .leftside,
-.mainbody .rightside {
-    padding-top: 5px;
-}
-.mainbody .rightside {
-     padding-left: 0; /* Removed padding, gap handles spacing */
-}
-.mainbody .leftside {
-    padding-right: 0; /* Removed padding */
-}
-
-
-/* --- Section Titles --- */
-.title {
+.job-title {
     font-weight: 700;
-    font-size: 16px; /* Slightly smaller title */
-    border: none;
-    padding-bottom: 3px;
-    border-bottom: 2px solid #5cb85c; /* Using Bootstrap success color */
-    display: inline-block; /* Ensure border only spans text */
-    margin-bottom: 10px; /* Space below title */
-    text-transform: uppercase; /* Uppercase titles */
-    letter-spacing: 0.5px;
+    font-size: 1.1rem;
 }
 
-/* --- Common Item Styling --- */
-.skill, .language, .achieve, .interest, .edublock, .new-section-block {
-    margin-bottom: 10px; /* Consistent spacing */
-    line-height: 1.5; /* Improve readability */
-    display: flex; /* Use flex for alignment */
-    align-items: flex-start; /* Align checkbox with first line */
+.company {
+    font-weight: 600;
+    color: var(--secondary-color);
 }
 
-.skill span:not(:first-child),
-.language span:not(:first-child),
-.achieve span:not(:first-child),
-.interest span:not(:first-child),
-.edublock div,
-.new-section-block div {
-    margin-left: 5px; /* Space after icon/checkbox */
+.date-location {
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+    margin-bottom: 0.5rem;
 }
 
-.skill .fa-chevron-circle-right {
-    color: #5cb85c; /* Match title border color */
-    margin-right: 5px;
+.date-location span:not(:last-child)::after {
+    content: "•";
+    margin: 0 0.5rem;
 }
 
-/* Specific Sections */
-.language span:nth-child(odd):not(:first-child) { /* Target LANGNAME specifically */
+.job-description {
+    padding-left: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.job-description li {
+    margin-bottom: 0.25rem;
+}
+
+/* Education Styles */
+.education-item {
+    margin-bottom: 1.5rem;
+}
+
+.degree {
     font-weight: 700;
 }
 
-.edublock {
-    display: block; /* Override flex for education block structure */
-    margin-bottom: 15px;
+.institution {
+    font-weight: 600;
+    color: var(--secondary-color);
 }
-.edublock .education-head {
+
+/* Skills Styles */
+.skills-category {
+    margin-bottom: 1rem;
+}
+
+.category-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.skills-list {
+    margin-bottom: 0.5rem;
+}
+
+/* Certification Styles */
+.certification-item {
+    margin-bottom: 1rem;
+}
+
+.certification-name {
     font-weight: 700;
-    font-size: 15px; /* Slightly smaller */
-    margin-left: 5px; /* Align with checkbox */
-}
-.edublock div {
-    margin-left: 25px; /* Indent institution/year */
-    font-size: 13px;
-    color: #555;
 }
 
-.new-section-block {
-    display: block; /* Override flex */
-    margin-bottom: 20px; /* More space between these sections */
-}
-.new-section-block .title {
-    margin-left: 5px; /* Align title with checkbox */
-}
-.new-section-block div {
-     margin-left: 25px; /* Indent description */
-     margin-top: 5px;
+.certifying-body {
+    font-style: italic;
 }
 
-
-/* --- Buttons --- */
-button.btn { /* Style add/remove buttons */
-    margin-top: 10px;
-    margin-right: 5px;
-    font-size: 12px; /* Smaller buttons */
-    padding: 4px 8px;
-}
-/* Ensure remove buttons have consistent margin */
-.leftside > div > button.btn-danger,
-.rightside > div > button.btn-danger,
-.new-section-container > button.btn-danger {
-    margin-top: 10px;
-}
-
-
-/* --- Navigation Buttons --- */
-.nav {
-    position: fixed;
-    top: 50%; /* Center vertically */
-    left: 2%;
-    transform: translateY(-50%); /* Adjust vertical centering */
-    display: flex;
-    flex-direction: column; /* Stack buttons vertically */
-    gap: 15px; /* Space between buttons */
-    z-index: 100; /* Ensure they are above resume */
-}
-
-.navbtn {
-    background-color: #fff;
-    color: #333;
-    height: 50px; /* Smaller buttons */
+/* Buttons */
+.btn-action {
     width: 50px;
+    height: 50px;
     border-radius: 50%;
-    border: #ccc 2px solid;
-    transition: all 300ms ease-in-out;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px, rgba(0, 0, 0, 0.05) 0px 1px 3px;
-    display: flex; /* Center icon */
-    justify-content: center;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    display: flex;
     align-items: center;
-    text-decoration: none; /* For <a> tag */
-    font-size: 18px; /* Icon size */
-    cursor: pointer;
+    justify-content: center;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
 }
 
-.navbtn:hover {
-    background-color: #333;
-    color: #fff;
-    border-color: #333;
-    transform: scale(1.1); /* Grow effect */
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 12px, rgba(0, 0, 0, 0.1) 0px 2px 6px;
+.btn-action:hover {
+    background-color: var(--primary-color);
+    transform: scale(1.05);
 }
 
-/* --- Checkbox --- */
-.input-checkbox {
-    margin-right: 8px;
-    cursor: pointer;
-    width: 15px; /* Slightly larger checkbox */
-    height: 15px;
-    vertical-align: middle; /* Align better with text */
+.btn-add-section {
+    background-color: var(--secondary-color);
+    color: white;
+    margin-top: 0.5rem;
 }
 
-/* --- Content Editable Placeholder --- */
-[contenteditable="true"]:empty:before {
-  content: attr(placeholder);
-  color: gray;
-  font-style: italic;
+.btn-add-section:hover {
+    background-color: var(--primary-color);
+    color: white;
 }
 
-/* Print specific styles (optional but good practice) */
+.btn-sm {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+}
+
+.btn-add-bullet, .btn-remove-experience, 
+.btn-remove-education, .btn-remove-skill-category, 
+.btn-remove-certification {
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+/* Content Editable Styles */
+[contenteditable="true"] {
+    padding: 0.25rem;
+    border-radius: 3px;
+    min-height: 1em;
+}
+
+[contenteditable="true"]:focus {
+    outline: 2px solid var(--secondary-color);
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+[contenteditable="true"][data-placeholder]:empty:before {
+    content: attr(data-placeholder);
+    color: var(--dark-gray);
+    font-style: italic;
+}
+
+/* Print Styles */
 @media print {
-  body {
-    background: none; /* No background for printing */
-    padding: 0;
-  }
-  .resume {
-    box-shadow: none; /* No shadow for printing */
-    width: 100%;
-    max-width: 100%;
-  }
-  .nav {
-    display: none; /* Hide nav buttons when printing */
-  }
-  #print {
-      padding: 10mm; /* Add margins for printing */
-      min-height: 0; /* Allow content to flow naturally */
-  }
-  /* Hide buttons and checkboxes directly via CSS for printing */
-  #print button, #print .input-checkbox {
-      display: none !important;
-  }
+    body {
+        background: none;
+        padding: 0;
+    }
+    
+    .sidebar {
+        display: none;
+    }
+    
+    .resume-paper {
+        box-shadow: none;
+        padding: 0;
+    }
+    
+    .btn-add-section, .experience-actions, 
+    .education-actions, .btn-remove-skill-category, 
+    .btn-remove-certification {
+        display: none !important;
+    }
+    
+    .resume-container {
+        max-width: 100%;
+        margin: 0;
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .sidebar {
+        min-height: auto;
+        padding: 1rem 0;
+    }
+    
+    .resume-editor {
+        padding: 1rem;
+    }
+    
+    .resume-name {
+        font-size: 2rem;
+    }
+    
+    .contact-info {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 }
